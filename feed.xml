@@ -1,4 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-12-10T10:24:16-05:00</updated><id>/feed.xml</id><title type="html">Sharan Sajiv Menon</title><subtitle>This is my personal blog. I will be writing lots of posts on programming and mathematics.</subtitle><author><name>Sharan Sajiv Menon</name></author><entry><title type="html">Welcome to Jekyll!</title><link href="/misc/first-post/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2019-12-09T00:00:00-05:00</published><updated>2019-12-09T00:00:00-05:00</updated><id>/misc/first-post</id><content type="html" xml:base="/misc/first-post/">&lt;p&gt;Welcome to my blog. This is my first post and I will be adding more posts soon. Check the about page if you want to learn more about me.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-12-13T08:59:02-05:00</updated><id>/feed.xml</id><title type="html">Sharan Sajiv Menon</title><subtitle>This is my personal blog. I will be writing lots of posts on programming and mathematics.</subtitle><author><name>Sharan Sajiv Menon</name></author><entry><title type="html">Calculating Jacobian Vectors</title><link href="/mathematics/jacobian-vectors/" rel="alternate" type="text/html" title="Calculating Jacobian Vectors" /><published>2019-12-13T00:00:00-05:00</published><updated>2019-12-13T00:00:00-05:00</updated><id>/mathematics/jacobian-vectors</id><content type="html" xml:base="/mathematics/jacobian-vectors/">&lt;p&gt;Jacobian vectors are a really powerful tool in mathematics, and it is very useful in machine learning. Learning how to calculate Jacobian vectors will be important to understand machine learning, so let’s learn how to calculate it.&lt;/p&gt;
+
+&lt;p&gt;You need to know what a vector is and how to take the partial derivative of a function&lt;/p&gt;
+
+&lt;h2 id=&quot;calculating-jacobian-vectors&quot;&gt;Calculating jacobian vectors&lt;/h2&gt;
+
+&lt;p&gt;Lets calculate the jacobian vector for the following function:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(x,y,z)=3x^2+y^2z+cos(z)x&lt;/script&gt;
+
+&lt;p&gt;This is a pretty simple function. Lets take the partial derivatives of the function first:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\partial f}{\partial x} = 6x+cos(z)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\partial f}{\partial y} = 2yz&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\partial f}{\partial z} = y^2-sin(z)x&lt;/script&gt;
+
+&lt;p&gt;The Jacobian vector for a function is&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+J= \begin{bmatrix} 
+\frac{\partial f}{\partial x} &amp; \frac{\partial f}{\partial y} &amp; \frac{\partial f}{\partial z}
+\end{bmatrix} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Let’s substitute our partial derivatives in to the Jacobian Vector&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+J= \begin{bmatrix} 
+6x+cos(z) &amp; 2yz &amp; y^2-sin(z)x
+\end{bmatrix} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;And there you go, we have a Jacobian vector for our function.&lt;/p&gt;
+
+&lt;h2 id=&quot;evaulating-the-vector&quot;&gt;Evaulating the vector&lt;/h2&gt;
+
+&lt;p&gt;We can evaluate the vector too at a certain $x$, $y$, $z$&lt;/p&gt;
+
+&lt;p&gt;Let’s evaulate $J(0,0,0)$&lt;/p&gt;
+
+&lt;p&gt;We just substitute in the $x$, $y$, and $z$ values into the partial derivatives in the vector and evaluate.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+J=\begin{bmatrix}
+6*0+cos(0)&amp;2*0*0&amp;sin(0)*0
+\end{bmatrix} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;This equals&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+J=\begin{bmatrix}
+1&amp;0&amp;0
+\end{bmatrix} %]]&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;So you now have calculated the Jacobian vector for a function $f(x,y,z)$ and evaluated it at those three points. There are many applications to Jacobian vectors like Jacobian Matrices. It is used in machine learning and many other fields.&lt;/p&gt;
+
+&lt;p&gt;So try to calculate and evaluate a Jacobian vector for a function now that you know how to calculate Jacobian vectors.&lt;/p&gt;
+
+&lt;h2 id=&quot;more-resources&quot;&gt;More resources&lt;/h2&gt;
+
+&lt;p&gt;If you are looking to learn more, here is a curated list of resources that I recommend you use.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.coursera.org/specializations/mathematics-machine-learning&quot;&gt;Mathematics for Machine Learning - Coursera&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.khanacademy.org/math/ap-calculus-bc&quot;&gt;Khan Academy Calculus&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant&quot;&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Well, folks, that’s it for this tutorial and I will see you next time.&lt;/p&gt;</content><author><name>Sharan Sajiv Menon</name></author><category term="Linear Algebra" /><category term="Calculus" /><summary type="html">Jacobian vectors are a really powerful tool in mathematics, and it is very useful in machine learning. Learning how to calculate Jacobian vectors will be important to understand machine learning, so let’s learn how to calculate it.</summary></entry><entry><title type="html">First Post</title><link href="/misc/first-post/" rel="alternate" type="text/html" title="First Post" /><published>2019-12-09T00:00:00-05:00</published><updated>2019-12-09T00:00:00-05:00</updated><id>/misc/first-post</id><content type="html" xml:base="/misc/first-post/">&lt;p&gt;Welcome to my blog. This is my first post and I will be adding more posts soon. Check the about page if you want to learn more about me.&lt;/p&gt;
 
 &lt;p&gt;That’s it for now and I will see you later&lt;/p&gt;
 

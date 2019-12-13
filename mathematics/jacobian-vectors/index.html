@@ -9,24 +9,21 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Sharan Sajiv Menon</title>
-<meta name="description" content="This is my personal blog. I will be writing lots of posts on programming and mathematics.">
+<!-- begin _includes/seo.html --><title>Calculating Jacobian Vectors - Sharan Sajiv Menon</title>
+<meta name="description" content="Jacobian vectors are a really powerful tool in mathematics, and it is very useful in machine learning. Learning how to calculate Jacobian vectors will be important to understand machine learning, so let’s learn how to calculate it.">
 
 
   <meta name="author" content="Sharan Sajiv Menon">
 
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Sharan Sajiv Menon">
-<meta property="og:title" content="Sharan Sajiv Menon">
-<meta property="og:url" content="/">
+<meta property="og:title" content="Calculating Jacobian Vectors">
+<meta property="og:url" content="/mathematics/jacobian-vectors/">
 
 
-  <meta property="og:description" content="This is my personal blog. I will be writing lots of posts on programming and mathematics.">
-
-
-
+  <meta property="og:description" content="Jacobian vectors are a really powerful tool in mathematics, and it is very useful in machine learning. Learning how to calculate Jacobian vectors will be important to understand machine learning, so let’s learn how to calculate it.">
 
 
 
@@ -34,9 +31,14 @@
 
 
 
+  <meta property="article:published_time" content="2019-12-13T00:00:00-05:00">
 
 
-<link rel="canonical" href="/">
+
+
+
+
+<link rel="canonical" href="/mathematics/jacobian-vectors/">
 
 
 
@@ -97,7 +99,7 @@
 
   </head>
 
-  <body class="layout--home">
+  <body class="layout--single">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -269,30 +271,19 @@
   </div>
 
 
-  <div class="archive">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Calculating Jacobian Vectors">
+    <meta itemprop="description" content="Jacobian vectors are a really powerful tool in mathematics, and it is very useful in machine learning. Learning how to calculate Jacobian vectors will be important to understand machine learning, so let’s learn how to calculate it.">
+    <meta itemprop="datePublished" content="December 13, 2019">
     
-      <h1 id="page-title" class="page__title"></h1>
-    
-    
 
-<h3 class="archive__subtitle">Recent Posts</h3>
-
-
-  
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
+    <div class="page__inner-wrap">
       
-        <a href="/mathematics/jacobian-vectors/" rel="permalink">Calculating Jacobian Vectors
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Calculating Jacobian Vectors
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
 
@@ -300,17 +291,177 @@
   1 minute read
 
 </p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Jacobian vectors are a really powerful tool in mathematics, and it is very useful in machine learning. Learning how to calculate Jacobian vectors will be important to understand machine learning, so let’s learn how to calculate it.</p>
+
+<p>You need to know what a vector is and how to take the partial derivative of a function</p>
+
+<h2 id="calculating-jacobian-vectors">Calculating jacobian vectors</h2>
+
+<p>Lets calculate the jacobian vector for the following function:</p>
+
+<script type="math/tex; mode=display">f(x,y,z)=3x^2+y^2z+cos(z)x</script>
+
+<p>This is a pretty simple function. Lets take the partial derivatives of the function first:</p>
+
+<script type="math/tex; mode=display">\frac{\partial f}{\partial x} = 6x+cos(z)</script>
+
+<script type="math/tex; mode=display">\frac{\partial f}{\partial y} = 2yz</script>
+
+<script type="math/tex; mode=display">\frac{\partial f}{\partial z} = y^2-sin(z)x</script>
+
+<p>The Jacobian vector for a function is</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+J= \begin{bmatrix} 
+\frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} & \frac{\partial f}{\partial z}
+\end{bmatrix} %]]></script>
+
+<p>Let’s substitute our partial derivatives in to the Jacobian Vector</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+J= \begin{bmatrix} 
+6x+cos(z) & 2yz & y^2-sin(z)x
+\end{bmatrix} %]]></script>
+
+<p>And there you go, we have a Jacobian vector for our function.</p>
+
+<h2 id="evaulating-the-vector">Evaulating the vector</h2>
+
+<p>We can evaluate the vector too at a certain $x$, $y$, $z$</p>
+
+<p>Let’s evaulate $J(0,0,0)$</p>
+
+<p>We just substitute in the $x$, $y$, and $z$ values into the partial derivatives in the vector and evaluate.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+J=\begin{bmatrix}
+6*0+cos(0)&2*0*0&sin(0)*0
+\end{bmatrix} %]]></script>
+
+<p>This equals</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+J=\begin{bmatrix}
+1&0&0
+\end{bmatrix} %]]></script>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>So you now have calculated the Jacobian vector for a function $f(x,y,z)$ and evaluated it at those three points. There are many applications to Jacobian vectors like Jacobian Matrices. It is used in machine learning and many other fields.</p>
+
+<p>So try to calculate and evaluate a Jacobian vector for a function now that you know how to calculate Jacobian vectors.</p>
+
+<h2 id="more-resources">More resources</h2>
+
+<p>If you are looking to learn more, here is a curated list of resources that I recommend you use.</p>
+
+<ol>
+  <li><a href="https://www.coursera.org/specializations/mathematics-machine-learning">Mathematics for Machine Learning - Coursera</a></li>
+  <li><a href="https://www.khanacademy.org/math/ap-calculus-bc">Khan Academy Calculus</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant">Wikipedia</a></li>
+</ol>
+
+<p>Well, folks, that’s it for this tutorial and I will see you next time.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
     
-    <p class="archive__item-excerpt" itemprop="description">Jacobian vectors are a really powerful tool in mathematics, and it is very useful in machine learning. Learning how to calculate Jacobian vectors will be imp...</p>
-  </article>
-</div>
+      
+      
+      <a href="/tags/#calculus" class="page__taxonomy-item" rel="tag">Calculus</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#linear-algebra" class="page__taxonomy-item" rel="tag">Linear Algebra</a>
+    
+    </span>
+  </p>
+
+
 
 
   
 
 
+  
+  
+  
 
-<div class="list__item">
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#mathematics" class="page__taxonomy-item" rel="tag">Mathematics</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-12-13T00:00:00-05:00">December 13, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Calculating+Jacobian+Vectors%20%2Fmathematics%2Fjacobian-vectors%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fmathematics%2Fjacobian-vectors%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fmathematics%2Fjacobian-vectors%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/misc/first-post/" class="pagination--pager" title="First Post
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title" itemprop="headline">
@@ -335,13 +486,13 @@
   </article>
 </div>
 
-
-
-
-
-
-  </div>
+        
+      </div>
+    </div>
+  
+  
 </div>
+
     </div>
 
     
