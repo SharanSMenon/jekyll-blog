@@ -1,4 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-12-13T08:59:02-05:00</updated><id>/feed.xml</id><title type="html">Sharan Sajiv Menon</title><subtitle>This is my personal blog. I will be writing lots of posts on programming and mathematics.</subtitle><author><name>Sharan Sajiv Menon</name></author><entry><title type="html">Calculating Jacobian Vectors</title><link href="/mathematics/jacobian-vectors/" rel="alternate" type="text/html" title="Calculating Jacobian Vectors" /><published>2019-12-13T00:00:00-05:00</published><updated>2019-12-13T00:00:00-05:00</updated><id>/mathematics/jacobian-vectors</id><content type="html" xml:base="/mathematics/jacobian-vectors/">&lt;p&gt;Jacobian vectors are a really powerful tool in mathematics, and it is very useful in machine learning. Learning how to calculate Jacobian vectors will be important to understand machine learning, so let’s learn how to calculate it.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-12-15T15:53:15-05:00</updated><id>/feed.xml</id><title type="html">Sharan Sajiv Menon</title><subtitle>This is my personal blog. I will be writing lots of posts on programming and mathematics.</subtitle><author><name>Sharan Sajiv Menon</name></author><entry><title type="html">Calculus with **Sympy**</title><link href="/mathematics/programming/calculus-with-sympy/" rel="alternate" type="text/html" title="Calculus with **Sympy**" /><published>2019-12-13T00:00:00-05:00</published><updated>2019-12-13T00:00:00-05:00</updated><id>/mathematics/programming/calculus-with-sympy</id><content type="html" xml:base="/mathematics/programming/calculus-with-sympy/">&lt;p&gt;There is a python library called &lt;a href=&quot;https://www.sympy.org/en/index.html&quot;&gt;SymPy&lt;/a&gt;. It is a python library for symbolic mathematics (means that it can work with symbols like x, y, and z). This library can do calculus which means that it can find limits, derivatives, and integrate functions. It can also do many other things like solve matrices, vectors, etc. This tutorial will show you how to use SymPy&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Before continuing on with this tutorial, make sure that you are familiar with calculus and its concepts. The topics covered in this article will be limits, derivatives, and integrals. You can head over to Khan Academy or get a calculus course if you don’t know what that is or if you just need a refresher.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;installing-sympy&quot;&gt;Installing Sympy&lt;/h2&gt;
+
+&lt;p&gt;In this short section, we will just install sympy. If you don’t already have sympy installed, just run the following command in your terminal:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install sympy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: If you do not want to deal with installing and importing sympy (which is very easy), you can try out the sympy live shell. Just head over to sympy.org and you will see it there&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;getting-started-with-sympy&quot;&gt;Getting Started with Sympy&lt;/h2&gt;
+
+&lt;p&gt;Once you have sympy installed, import it into your notebook&lt;/p&gt;
+
+&lt;div class=&quot;language-py highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sympy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Just importing everything
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now that we have sympy imported, we can do some calculus with it.&lt;/p&gt;
+
+&lt;p&gt;We need to create some variables to do calculus with so add this to your code:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;symbols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x y z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# We are making mathematical symbols
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We will probably not need $y$ and $z$ but we have it there just in case or if you want to use it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;limits&quot;&gt;Limits&lt;/h2&gt;
+
+&lt;p&gt;We can finally get to the calculus portion. We are going to first find the limits of functions and then we will move on to derivatives and integrals. Let’s get started!&lt;/p&gt;
+
+&lt;p&gt;Let’s calculate the limit of the function $3x^2 +2x$ at $x=0$. We know the answer is $0$.&lt;/p&gt;
+
+&lt;p&gt;Here is the python code:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Should give 0
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As you can see, using Sympy to find limits is very simple and easy.&lt;/p&gt;
+
+&lt;p&gt;Let’s move on to finding derivatives.&lt;/p&gt;
+
+&lt;h2 id=&quot;derivatives&quot;&gt;Derivatives&lt;/h2&gt;
+
+&lt;p&gt;In this section, we will learn to find the derivative of functions and how to use them.&lt;/p&gt;
+
+&lt;p&gt;We will find the derivative of the function $x^2$. We can calculate the derivative by hand which we know to be $2x$ thanks to the power rule.&lt;/p&gt;
+
+&lt;p&gt;Let’s do this in sympy. Here is the code for finding the derivative:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;derivative&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;diff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you want a function that you can evaulate, say you want to find the instantaneous rate of change at $x$, then you can lambdify it. Here’s how you do it:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lambdify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;derivative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Prints 4 since 2*2 = 4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Let’s move on to integrating functions.&lt;/p&gt;
+
+&lt;h2 id=&quot;integrals&quot;&gt;Integrals&lt;/h2&gt;
+
+&lt;p&gt;In this last section, we will learn how to use integrals with sympy.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Integrals are also known as antiderivatives.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Let’s integrate the following function:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(x)=3x^2+3x&lt;/script&gt;
+
+&lt;p&gt;We know that the answer is this:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\int f(x)dx=x^3+
+\frac{3}{2}x^2&lt;/script&gt;
+
+&lt;p&gt;Let’s do this with sympy:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;integrate(3*x**2 + 3*x)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you want to lambdify the function, just follow the same steps shown in the derivative section and you can evaulate it.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;You have learned how to differentiate, integrate, and find the limits of functions. These are very important topics in calculus and you will use this a lot throught your life. Calculus is at the heart of machine learning and deep learning. It is also very important for physics, and countless other subjects so learning it is important.&lt;/p&gt;</content><author><name>Sharan Sajiv Menon</name></author><category term="Python" /><category term="Calculus" /><summary type="html">There is a python library called SymPy. It is a python library for symbolic mathematics (means that it can work with symbols like x, y, and z). This library can do calculus which means that it can find limits, derivatives, and integrate functions. It can also do many other things like solve matrices, vectors, etc. This tutorial will show you how to use SymPy</summary></entry><entry><title type="html">Calculating Jacobian Vectors</title><link href="/mathematics/jacobian-vectors/" rel="alternate" type="text/html" title="Calculating Jacobian Vectors" /><published>2019-12-11T00:00:00-05:00</published><updated>2019-12-11T00:00:00-05:00</updated><id>/mathematics/jacobian-vectors</id><content type="html" xml:base="/mathematics/jacobian-vectors/">&lt;p&gt;Jacobian vectors are a really powerful tool in mathematics, and it is very useful in machine learning. Learning how to calculate Jacobian vectors will be important to understand machine learning, so let’s learn how to calculate it.&lt;/p&gt;
 
 &lt;p&gt;You need to know what a vector is and how to take the partial derivative of a function&lt;/p&gt;
 

@@ -8,4 +8,9 @@ var store = [{
         "excerpt":"Jacobian vectors are a really powerful tool in mathematics, and it is very useful in machine learning. Learning how to calculate Jacobian vectors will be important to understand machine learning, so let’s learn how to calculate it. You need to know what a vector is and how to take the...","categories": ["Mathematics"],
         "tags": ["Linear Algebra","Calculus"],
         "url": "/mathematics/jacobian-vectors/",
+        "teaser":null},{
+        "title": "Calculus with **Sympy**",
+        "excerpt":"There is a python library called SymPy. It is a python library for symbolic mathematics (means that it can work with symbols like x, y, and z). This library can do calculus which means that it can find limits, derivatives, and integrate functions. It can also do many other things...","categories": ["Mathematics","Programming"],
+        "tags": ["Python","Calculus"],
+        "url": "/mathematics/programming/calculus-with-sympy/",
         "teaser":null}]
