@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Calculus with Sympy - Sharan Sajiv Menon</title>
-<meta name="description" content="There is a python library called SymPy. It is a python library for symbolic mathematics (means that it can work with symbols like x, y, and z). This library can do calculus which means that it can find limits, derivatives, and integrate functions. It can also do many other things like solve matrices, vectors, etc. This tutorial will show you how to use SymPy">
+<!-- begin _includes/seo.html --><title>MNIST with Tensorflow - Sharan Sajiv Menon</title>
+<meta name="description" content="Tensorflow is a powerful deep learning framework developed by the team at Google. It is used to build highly accurate neural networks.">
 
 
   <meta name="author" content="Sharan Sajiv Menon">
@@ -19,26 +19,26 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Sharan Sajiv Menon">
-<meta property="og:title" content="Calculus with Sympy">
-<meta property="og:url" content="http://localhost:4000/mathematics/programming/calculus-with-sympy/">
+<meta property="og:title" content="MNIST with Tensorflow">
+<meta property="og:url" content="http://localhost:4000/programming/machine%20learning/Fashion-MNIST-with-PyTorch/">
 
 
-  <meta property="og:description" content="There is a python library called SymPy. It is a python library for symbolic mathematics (means that it can work with symbols like x, y, and z). This library can do calculus which means that it can find limits, derivatives, and integrate functions. It can also do many other things like solve matrices, vectors, etc. This tutorial will show you how to use SymPy">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2019-12-13T00:00:00-05:00">
+  <meta property="og:description" content="Tensorflow is a powerful deep learning framework developed by the team at Google. It is used to build highly accurate neural networks.">
 
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/mathematics/programming/calculus-with-sympy/">
+
+  <meta property="article:published_time" content="2019-12-17T00:00:00-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/programming/machine%20learning/Fashion-MNIST-with-PyTorch/">
 
 
 
@@ -272,15 +272,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Calculus with Sympy">
-    <meta itemprop="description" content="There is a python library called SymPy. It is a python library for symbolic mathematics (means that it can work with symbols like x, y, and z). This library can do calculus which means that it can find limits, derivatives, and integrate functions. It can also do many other things like solve matrices, vectors, etc. This tutorial will show you how to use SymPy">
-    <meta itemprop="datePublished" content="December 13, 2019">
+    <meta itemprop="headline" content="MNIST with Tensorflow">
+    <meta itemprop="description" content="Tensorflow is a powerful deep learning framework developed by the team at Google. It is used to build highly accurate neural networks.">
+    <meta itemprop="datePublished" content="December 17, 2019">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Calculus with <strong>Sympy</strong>
+          <h1 id="page-title" class="page__title" itemprop="headline">MNIST with Tensorflow
 </h1>
           
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -299,114 +299,104 @@
         
           <aside class="sidebar__right ">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Topics</h4></header>
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Contents</h4></header>
               <ul class="toc__menu">
-  <li><a href="#installing-sympy">Installing Sympy</a></li>
-  <li><a href="#getting-started-with-sympy">Getting Started with Sympy</a></li>
-  <li><a href="#limits">Limits</a></li>
-  <li><a href="#derivatives">Derivatives</a></li>
-  <li><a href="#integrals">Integrals</a></li>
+  <li><a href="#getting-started">Getting started</a></li>
+  <li><a href="#getting-the-data">Getting the data</a></li>
+  <li><a href="#building-the-model">Building the model</a>
+    <ul>
+      <li><a href="#compiling-the-model">Compiling the model</a></li>
+    </ul>
+  </li>
+  <li><a href="#training-the-model">Training the model</a></li>
+  <li><a href="#evaulating-the-model">Evaulating the model</a></li>
   <li><a href="#conclusion">Conclusion</a></li>
 </ul>
             </nav>
           </aside>
         
-        <p>There is a python library called <a href="https://www.sympy.org/en/index.html">SymPy</a>. It is a python library for symbolic mathematics (means that it can work with symbols like x, y, and z). This library can do calculus which means that it can find limits, derivatives, and integrate functions. It can also do many other things like solve matrices, vectors, etc. This tutorial will show you how to use SymPy</p>
+        <p>Tensorflow is a powerful deep learning framework developed by the team at Google. It is used to build highly accurate neural networks.</p>
+
+<p>This is probably my last post of the year (for future readers, the year that I am writing this in is 2019).</p>
+
+<p>We will use Tensorflow (it’s Keras API) to train a model that can classify the MNIST Dataset.</p>
 
 <blockquote>
-  <p><strong>Note</strong>: Before continuing on with this tutorial, make sure that you are familiar with calculus and its concepts. The topics covered in this article will be limits, derivatives, and integrals. You can head over to Khan Academy or get a calculus course if you don’t know what that is or if you just need a refresher.</p>
+  <p><strong>Stay Tuned</strong> because I plan on making a tutorial for classifying images with Tensorflow’s subclassing API and PyTorch (which is another deep learning framework like tensorflow)</p>
 </blockquote>
 
-<h2 id="installing-sympy">Installing Sympy</h2>
+<p>Let’s get started</p>
 
-<p>In this short section, we will just install sympy. If you don’t already have sympy installed, just run the following command in your terminal:</p>
+<h2 id="getting-started">Getting started</h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install sympy
+<p>You need to install tensorflow. If you already have tensorflow installed, you can skip this.</p>
+
+<p>To install tensorflow, run</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>tensorflow
 </code></pre></div></div>
 
-<blockquote>
-  <p><strong>Note</strong>: If you do not want to deal with installing and importing sympy (which is very easy), you can try out the sympy live shell. Just head over to sympy.org and you will see it there</p>
-</blockquote>
+<p>or</p>
 
-<h2 id="getting-started-with-sympy">Getting Started with Sympy</h2>
-
-<p>Once you have sympy installed, import it into your notebook</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1"># Just importing everything
-</span></code></pre></div></div>
-
-<p>Now that we have sympy imported, we can do some calculus with it.</p>
-
-<p>We need to create some variables to do calculus with so add this to your code:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'x y z'</span><span class="p">)</span> <span class="c1"># We are making mathematical symbols
-</span></code></pre></div></div>
-
-<blockquote>
-  <p>We will probably not need $y$ and $z$ but we have it there just in case or if you want to use it.</p>
-</blockquote>
-
-<h2 id="limits">Limits</h2>
-
-<p>We can finally get to the calculus portion. We are going to first find the limits of functions and then we will move on to derivatives and integrals. Let’s get started!</p>
-
-<p>Let’s calculate the limit of the function $3x^2 +2x$ at $x=0$. We know the answer is $0$.</p>
-
-<p>Here is the python code:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">limit</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># Should give 0
-</span></code></pre></div></div>
-
-<p>As you can see, using Sympy to find limits is very simple and easy.</p>
-
-<p>Let’s move on to finding derivatives.</p>
-
-<h2 id="derivatives">Derivatives</h2>
-
-<p>In this section, we will learn to find the derivative of functions and how to use them.</p>
-
-<p>We will find the derivative of the function $x^2$. We can calculate the derivative by hand which we know to be $2x$ thanks to the power rule.</p>
-
-<p>Let’s do this in sympy. Here is the code for finding the derivative:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">derivative</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda <span class="nb">install </span>tensorflow <span class="c"># For anaconda</span>
 </code></pre></div></div>
 
-<p>If you want a function that you can evaulate, say you want to find the instantaneous rate of change at $x$, then you can lambdify it. Here’s how you do it:</p>
+<h2 id="getting-the-data">Getting the data</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">derivative</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># Prints 4 since 2*2 = 4
-</span></code></pre></div></div>
+<p>In your program or notebook, add the following code:</p>
 
-<p>Let’s move on to integrating functions.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">mnist</span> <span class="c1"># Getting the MNIST
+</span>
+<span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 
-<h2 id="integrals">Integrals</h2>
-
-<p>In this last section, we will learn how to use integrals with sympy.</p>
-
-<blockquote>
-  <p>Integrals are also known as antiderivatives.</p>
-</blockquote>
-
-<p>Let’s integrate the following function:</p>
-
-<script type="math/tex; mode=display">f(x)=3x^2+3x</script>
-
-<p>We know that the answer is this:</p>
-
-<script type="math/tex; mode=display">\int f(x)dx=x^3+
-\frac{3}{2}x^2</script>
-
-<p>Let’s do this with sympy:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>integrate(3*x**2 + 3*x)
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span> <span class="o">=</span> <span class="n">x_train</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">,</span> <span class="n">x_test</span> <span class="o">/</span> <span class="mf">255.0</span> 
 </code></pre></div></div>
 
-<p>If you want to lambdify the function, just follow the same steps shown in the derivative section and you can evaulate it.</p>
+<h2 id="building-the-model">Building the model</h2>
+
+<p>Add the following code to your program</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">),</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'softmax'</span><span class="p">)</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<p>This code creates the model. The first layer flattens the image for the model. The second layer is a hidden layer in which the learning takes place. The third layer is a dropout layer to prevent overfitting. The final layer returns the class that the model believes it to be. There are 10 neurons for 10 classes.</p>
+
+<h3 id="compiling-the-model">Compiling the model</h3>
+
+<p>When making tensorflow models, you need to compile it. Here is the code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">'adam'</span> <span class="n">loss</span><span class="o">=</span><span class="s">'sparse_categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'accuracy'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>We can now train the model</p>
+
+<h2 id="training-the-model">Training the model</h2>
+
+<p>Training the model in tensorflow is very simple. It requires only 1 line of code. Here is the code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This may take a bit of time so you are going to have to wait.</p>
+
+<h2 id="evaulating-the-model">Evaulating the model</h2>
+
+<p>Now that the model is done training, we can evaulate the model. Evaulating the model is also very simple in tensorflow just like everything else.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="c1"># Only 1 line
+</span></code></pre></div></div>
+
+<p>That’s it. We have built a model in tensorflow that can classify the MNIST dataset.</p>
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>You have learned how to differentiate, integrate, and find the limits of functions. These are very important topics in calculus and you will use this a lot throught your life. Calculus is at the heart of machine learning and deep learning. It is also very important for physics, and countless other subjects so learning it is important.</p>
+<p>This was very simple and as you can see, you can get started with tensorflow in around 5 minutes. It is that easy to work with tensorflow. Tensorflow has another API called the SubClassing API which is more complicated but allows you to build models that are more powerful. There are also other Deep Learning frameworks like PyTorch which helps you to build models but this is the easiest to learn  and implement. Have fun with your new model and I will see you next year!</p>
 
         
       </section>
@@ -427,11 +417,11 @@
     
       
       
-      <a href="/tags/#calculus" class="page__taxonomy-item" rel="tag">Calculus</a><span class="sep">, </span>
+      <a href="/tags/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#python" class="page__taxonomy-item" rel="tag">Python</a>
+      <a href="/tags/#tensorflow" class="page__taxonomy-item" rel="tag">Tensorflow</a>
     
     </span>
   </p>
@@ -452,7 +442,7 @@
     
       
       
-      <a href="/categories/#mathematics" class="page__taxonomy-item" rel="tag">Mathematics</a><span class="sep">, </span>
+      <a href="/categories/#machine-learning" class="page__taxonomy-item" rel="tag">Machine Learning</a><span class="sep">, </span>
     
       
       
@@ -463,30 +453,29 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-12-13T00:00:00-05:00">December 13, 2019</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-12-17T00:00:00-05:00">December 17, 2019</time></p>
         
       </footer>
 
       <section class="page__share">
   
 
-  <a href="https://twitter.com/intent/tweet?text=Calculus+with+%2A%2ASympy%2A%2A%20http%3A%2F%2Flocalhost%3A4000%2Fmathematics%2Fprogramming%2Fcalculus-with-sympy%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=MNIST+with+Tensorflow%20http%3A%2F%2Flocalhost%3A4000%2Fprogramming%2Fmachine%2520learning%2FFashion-MNIST-with-PyTorch%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fmathematics%2Fprogramming%2Fcalculus-with-sympy%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fprogramming%2Fmachine%2520learning%2FFashion-MNIST-with-PyTorch%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fmathematics%2Fprogramming%2Fcalculus-with-sympy%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fprogramming%2Fmachine%2520learning%2FFashion-MNIST-with-PyTorch%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/mathematics/jacobian-vectors/" class="pagination--pager" title="Calculating Jacobian Vectors
+      <a href="/mathematics/programming/calculus-with-sympy/" class="pagination--pager" title="Calculus with Sympy
 ">Previous</a>
     
     
-      <a href="/programming/machine%20learning/Fashion-MNIST-with-PyTorch/" class="pagination--pager" title="MNIST with Tensorflow
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -510,7 +499,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/programming/machine%20learning/Fashion-MNIST-with-PyTorch/" rel="permalink">MNIST with Tensorflow
+        <a href="/mathematics/programming/calculus-with-sympy/" rel="permalink">Calculus with <strong>Sympy</strong>
 </a>
       
     </h2>
@@ -524,9 +513,7 @@
 
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">Tensorflow is a powerful deep learning framework developed by the team at Google. It is used to build highly accurate neural networks.
-
-</p>
+    <p class="archive__item-excerpt" itemprop="description">There is a python library called SymPy. It is a python library for symbolic mathematics (means that it can work with symbols like x, y, and z). This library ...</p>
   </article>
 </div>
 
