@@ -18,4 +18,9 @@ var store = [{
         "excerpt":"Tensorflow is a powerful deep learning framework developed by the team at Google. It is used to build highly accurate neural networks. This is probably my last post of the year (for future readers, the year that I am writing this in is 2019). We will use Tensorflow (it’s Keras...","categories": ["Programming","Machine Learning"],
         "tags": ["Python","Tensorflow"],
         "url": "http://localhost:4000/programming/machine%20learning/Fashion-MNIST-with-PyTorch/",
+        "teaser":null},{
+        "title": "CNNs in PyTorch",
+        "excerpt":"Introduction PyTorch is a deep learning library developed by Facebook. It is a powerful library and can build highly accurate deep learning models. We will build a Convolutional Neural Network today. We will be training our model on the CIFAR-10 dataset which is a dataset of many 32 x 32...","categories": ["Programming","Machine Learning"],
+        "tags": ["Python","PyTorch"],
+        "url": "http://localhost:4000/programming/machine%20learning/cnn-pytorch/",
         "teaser":null}]
