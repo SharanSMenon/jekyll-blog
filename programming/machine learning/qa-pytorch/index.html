@@ -1,0 +1,760 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Question answering in PyTorch - Sharan Sajiv Menon</title>
+<meta name="description" content="PyTorch and transformers for question answering ">
+
+
+  <meta name="author" content="Sharan Sajiv Menon">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Sharan Sajiv Menon">
+<meta property="og:title" content="Question answering in PyTorch">
+<meta property="og:url" content="/programming/machine%20learning/qa-pytorch/">
+
+
+  <meta property="og:description" content="PyTorch and transformers for question answering ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-04-08T00:00:00-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="/programming/machine%20learning/qa-pytorch/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Sharan Sajiv Menon Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Sharan Sajiv Menon
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio-photo.jpg" alt="Sharan Sajiv Menon" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Sharan Sajiv Menon</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am a developer who enjoys programming, mathematics, and a lot more.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://sharansmenon.github.io/" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/SharanSajiv" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/SharanSMenon" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Question answering in PyTorch">
+    <meta itemprop="description" content="PyTorch and transformers for question answering">
+    <meta itemprop="datePublished" content="2020-04-08T00:00:00-04:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Question answering in PyTorch
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#what-is-question-answering">What is question answering?</a></li>
+  <li><a href="#getting-started">Getting started</a></li>
+  <li><a href="#loading-the-model">Loading the model</a></li>
+  <li><a href="#answering-questions">Answering questions</a></li>
+  <li><a href="#conclusion">Conclusion</a></li>
+  <li><a href="#bonus">Bonus</a>
+    <ul>
+      <li><a href="#loading-other-models">Loading other models</a></li>
+      <li><a href="#answering-with-a-pipline">Answering with a pipline</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <p>Hello and welcome to this tutorial where we will learn how to do question answering with PyTorch. For this, we will be using the <a href="http://transformer.huggingface.co/">transformers</a> library. This is a library of pre-trained transformers that we can use for various tasks, like text summarization and question answering.</p>
+
+<p>We will be using this library to do question answering. You will be suprised to see how well it does. Or at least I was surprised.</p>
+
+<h2 id="what-is-question-answering">What is question answering?</h2>
+
+<p>Before we get started, let me answer the question, What is question answering? Let’s use an example to demonstrate. At the time of writing, there is a pandemic going on. It is the coronavirus pandemic, so our model will answer questions about the pandemic.</p>
+
+<p>You have to give the model a paragraph of information and you can ask questions from that paragraph. So let’s say that we have this paragraph of information:</p>
+
+<blockquote>
+  <p>Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus. Most people infected with the COVID-19 virus will experience mild to moderate respiratory illness and recover without requiring special treatment. Older people, and those with underlying medical problems like cardiovascular disease, diabetes, chronic respiratory disease, and cancer are more likely to develop serious illness. The best way to prevent and slow down transmission is be well informed about the COVID-19 virus, the disease it causes and how it spreads. Protect yourself and others from infection by washing your hands or using an alcohol based rub frequently and not touching your face. The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for example, by coughing into a flexed elbow). At this time, there are no specific vaccines or treatments for COVID-19. However, there are many ongoing clinical trials evaluating potential treatments. WHO will continue to provide updated information as soon as clinical findings become available.</p>
+</blockquote>
+
+<p>We will ask the model the following question:</p>
+
+<blockquote>
+  <p>What is COVID-19?</p>
+</blockquote>
+
+<p>The model has to find a piece of text in the paragraph that answers this question. In this case, the answer would look like this:</p>
+
+<blockquote>
+  <p>An infectious disease caused by a newly discovered coronavirus</p>
+</blockquote>
+
+<p>Different models will give different answers. The answer above was given by a model called <code class="language-plaintext highlighter-rouge">BERT</code>. Here are answers from a few other models:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DistilBERT: Coronavirus disease 
+Albert: coronavirus disease 
+Roberta: an infectious disease caused by a newly discovered coronavirus
+</code></pre></div></div>
+
+<p>You can see that the<code class="language-plaintext highlighter-rouge">DistilBERT</code> and <code class="language-plaintext highlighter-rouge">Albert</code> give the same answer while <code class="language-plaintext highlighter-rouge">Roberta</code> gives the same answer as <code class="language-plaintext highlighter-rouge">BERT</code>. Each model will give a different answer. Let’s now dive in into question answering.</p>
+
+<h2 id="getting-started">Getting started</h2>
+
+<p>Make sure that you have installed the transformers library that I mentioned at the beginning. If not installed, run the following command</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>transformers
+</code></pre></div></div>
+
+<p>You will also need to have PyTorch installed. We need to import our libraries now and for this, we only need 2 imports.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">transformers</span>
+</code></pre></div></div>
+
+<h2 id="loading-the-model">Loading the model</h2>
+
+<p>We will now load the model in. Here, we are loading <code class="language-plaintext highlighter-rouge">BERT</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">### Bert ###
+</span><span class="n">tokenizer_bert</span> <span class="o">=</span> <span class="n">transformers</span><span class="o">.</span><span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s">'bert-base-uncased'</span><span class="p">)</span>
+<span class="n">model_bert</span> <span class="o">=</span> <span class="n">transformers</span><span class="o">.</span><span class="n">BertForQuestionAnswering</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s">'bert-large-uncased-whole-word-masking-finetuned-squad'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This will take some time since the model and tokenizer are quite large. Once finished, you can continue on.</p>
+
+<h2 id="answering-questions">Answering questions</h2>
+
+<p>The model will return the start and end position of the answer that it found in the paragraph. When we feed the question into the model, we have to do some preprocessing first, but that’s why we loaded in the tokenizer. Below is the code for answering a question about a paragraph</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span>  <span class="nf">answer_simple</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+	<span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode_plus</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> 
+		<span class="n">add_special_tokens</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+		<span class="n">return_tensors</span><span class="o">=</span><span class="s">"pt"</span>
+	<span class="p">)</span>
+	<span class="n">input_ids</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="s">"input_ids"</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+	<span class="n">text_tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_ids_to_tokens</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)</span>
+	<span class="n">answer_start_scores</span><span class="p">,</span> <span class="n">answer_end_scores</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+	<span class="n">answer_start</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">answer_start_scores</span><span class="p">)</span>
+	<span class="n">answer_end</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">answer_end_scores</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+	<span class="n">answer</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_string</span><span class="p">(</span>
+		<span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_ids_to_tokens</span><span class="p">(</span>
+			<span class="n">input_ids</span><span class="p">[</span><span class="n">answer_start</span><span class="p">:</span><span class="n">answer_end</span><span class="p">]</span>
+		<span class="p">)</span>
+	<span class="p">)</span>
+	<span class="k">return</span> <span class="n">answer</span>
+</code></pre></div></div>
+<p>Here is an example of the code running:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">covid_paragraph</span> <span class="o">=</span> <span class="s">"Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus. Most people infected with the COVID-19 virus will experience mild to moderate respiratory illness and recover without requiring special treatment. Older people, and those with underlying medical problems like cardiovascular disease, diabetes, chronic respiratory disease, and cancer are more likely to develop serious illness. The best way to prevent and slow down transmission is be well informed about the COVID-19 virus, the disease it causes and how it spreads. Protect yourself and others from infection by washing your hands or using an alcohol based rub frequently and not touching your face. The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for example, by coughing into a flexed elbow). At this time, there are no specific vaccines or treatments for COVID-19. However, there are many ongoing clinical trials evaluating potential treatments. WHO will continue to provide updated information as soon as clinical findings become available."</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">answer_simple</span><span class="p">(</span><span class="s">"What is COVID-19?"</span><span class="p">,</span> <span class="n">covid_paragraph</span><span class="p">,</span> <span class="n">tokenizer_bert</span><span class="p">,</span> <span class="n">model_bert</span><span class="p">))</span>
+<span class="n">an</span> <span class="n">infectious</span> <span class="n">disease</span> <span class="n">caused</span> <span class="n">by</span> <span class="n">a</span> <span class="n">newly</span> <span class="n">discovered</span> <span class="n">coronavirus</span>
+</code></pre></div></div>
+
+<p>You can see that it answers the question correctly. This is all we have to do in order to do question answering in PyTorch.</p>
+
+<blockquote>
+  <p><strong>Quick Note</strong>: You have got to ask a good question to the model, otherwise it will perform bad. Also, the answer to your question should lie somewhere in the text that you have given.</p>
+</blockquote>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>So, we’ve reached the end and now you know how to use a question answering model in PyTorch. But, there’s more to this. There are other models and other ways. If you check out the bonus section, you will find how to load other models and easier ways to do question answering. So go ahead and check that out!</p>
+
+<h2 id="bonus">Bonus</h2>
+
+<h3 id="loading-other-models">Loading other models</h3>
+
+<p>There are other models that can answer question. The following code will show how to load 2 other models.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">### Distil Bert ###
+</span><span class="n">tokenizer_distil_bert</span> <span class="o">=</span> <span class="n">transformers</span><span class="o">.</span><span class="n">DistilBertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s">'distilbert-base-cased'</span><span class="p">)</span>
+<span class="n">model_distil_bert</span> <span class="o">=</span> <span class="n">transformers</span><span class="o">.</span><span class="n">DistilBertForQuestionAnswering</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s">'distilbert-base-cased-distilled-squad'</span><span class="p">)</span>
+<span class="c1">### Albert ###
+</span><span class="n">tokenizer_albert</span> <span class="o">=</span> <span class="n">transformers</span><span class="o">.</span><span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s">'ktrapeznikov/albert-xlarge-v2-squad-v2'</span><span class="p">)</span>
+<span class="n">model_albert</span> <span class="o">=</span> <span class="n">transformers</span><span class="o">.</span><span class="n">AutoModelForQuestionAnswering</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s">'ktrapeznikov/albert-xlarge-v2-squad-v2'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We loaded DistilBERT and Albert here. If you head over <a href="https://huggingface.co/">Hugging Face’s</a> site and select the <code class="language-plaintext highlighter-rouge">PyTorch</code> and <code class="language-plaintext highlighter-rouge">question-answering</code> tags in the model search, you will find more models there.</p>
+
+<h3 id="answering-with-a-pipline">Answering with a pipline</h3>
+
+<p>In this section, I will show you a simpler way to do question answering using the pipeline object that the transformers library gives. Here is how you do it.</p>
+
+<p>We have to first create a pipeline,  and that is very simple to do.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">=</span> <span class="n">transformers</span><span class="o">.</span><span class="n">pipeline</span><span class="p">(</span><span class="s">"question-answering"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>If you want to load in a custom model, then use this code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">=</span> <span class="n">transformers</span><span class="o">.</span><span class="n">pipeline</span><span class="p">(</span><span class="s">'question-answering'</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">'distilbert-base-uncased-distilled-squad'</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="s">'bert-base-uncased'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This loads in DistilBERT and both pipelines can be used for question answering.</p>
+
+<p>Now we can answer questions. Here is a helper function that will make the job easier:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">answer_pipeline</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">question</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">:</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="n">question</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">text</span><span class="p">)[</span><span class="s">"answer"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>The pipeline also returns a lot of other information, and this function just extracts the answer. As you can see, answering with a pipeline is so simple that I was able to squeeze it into a lambda function. Using this function, we get something like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="c1"># Using the previous covid_paragraph
+</span><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">answer_pipeline</span><span class="p">(</span><span class="s">"What is COVID-19?"</span><span class="p">,</span> <span class="n">covid_paragraph</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">))</span>
+<span class="n">an</span> <span class="n">infectious</span> <span class="n">disease</span> <span class="n">caused</span> <span class="n">by</span> <span class="n">a</span> <span class="n">newly</span> <span class="n">discovered</span> <span class="n">coronavirus</span><span class="o">.</span>
+</code></pre></div></div>
+
+<p>This returns the same answer as before, and we see that it works. I found that it took a little longer to run but it worked.</p>
+
+<p>Anyways, that’s it for this post and I will see you next time. Oh, and there are no more bonus sections.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#nlp" class="page__taxonomy-item" rel="tag">NLP</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#pytorch" class="page__taxonomy-item" rel="tag">PyTorch</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#machine-learning" class="page__taxonomy-item" rel="tag">Machine Learning</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#programming" class="page__taxonomy-item" rel="tag">Programming</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-04-08T00:00:00-04:00">April 8, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Question+answering+in+PyTorch%20%2Fprogramming%2Fmachine%2520learning%2Fqa-pytorch%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fprogramming%2Fmachine%2520learning%2Fqa-pytorch%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fprogramming%2Fmachine%2520learning%2Fqa-pytorch%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/programming/machine%20learning/linear-regression-pytorch/" class="pagination--pager" title="Linear Regression in PyTorch
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/programming/machine%20learning/linear-regression-pytorch/" rel="permalink">Linear Regression in PyTorch
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Learn how to do Linear Regression in PyTorch.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/programming/machine%20learning/flowers-recognition/" rel="permalink">Flower Recognition in PyTorch
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Use transfer learning to classify images of flowers in PyTorch.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/programming/machine%20learning/cnn-pytorch/" rel="permalink">CNNs in PyTorch
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Train a CNN in Pytorch on the CIFAR-10 Dataset!
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/programming/machine%20learning/Fashion-MNIST-with-PyTorch/" rel="permalink">MNIST with Tensorflow
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Classify the MNIST dataset with Tensorflow and Python
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/SharanSajiv" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://github.com/SharanSMenon" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Sharan Sajiv Menon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+<script type="text/javascript" async
+	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+     extensions: ["tex2jax.js"],
+     jax: ["input/TeX", "output/HTML-CSS"],
+     tex2jax: {
+       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+       displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+       processEscapes: true
+     },
+     "HTML-CSS": { availableFonts: ["TeX"] }
+   });
+</script>
+
+  </body>
+</html>
