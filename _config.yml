@@ -22,6 +22,7 @@ instagram_username: sharansmenon22
 github_username: SharanSMenon
 minimal_mistakes_skin: dark
 search: true
+repository: SharanSMenon/jekyll-blog
 
 # Build settings
 markdown: kramdown
